@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-const CheckInCmdName = "#签到"
+const CheckInCmdName = "#打卡"
 
 func init() {
 	registerHandle(CheckInCmdName, new(checkIn))
@@ -30,7 +30,7 @@ func (s *checkIn) Handle(message *user.Message) {
 	}
 	from := message.From()
 	if roomModel.Status != models.OpenCheckinStatus {
-		room.Say("签到功能未开启", from)
+		room.Say("打卡功能未开启", from)
 		return
 	}
 	date := time.Now().Format("2006-01-02")
@@ -40,7 +40,7 @@ func (s *checkIn) Handle(message *user.Message) {
 		return
 	}
 	if exist {
-		room.Say("今天已经签到，请不要重复签到", from)
+		room.Say("今天已经打卡，请不要重复打卡", from)
 		return
 	}
 	if err := models.AddCheckIn(&models.Checkin{
@@ -51,5 +51,5 @@ func (s *checkIn) Handle(message *user.Message) {
 		room.Say(err.Error(), from)
 		return
 	}
-	room.Say("签到成功"+date, from)
+	room.Say("打卡成功,今天将不再提醒你"+date, from)
 }

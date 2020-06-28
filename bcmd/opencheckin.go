@@ -5,7 +5,7 @@ import (
 	"github.com/wechaty/go-wechaty/wechaty/user"
 )
 
-const OpenCheckInCmdName = "#开启签到"
+const OpenCheckInCmdName = "#开启打卡"
 
 func init() {
 	registerHandle(OpenCheckInCmdName, new(openCheckIn))
@@ -29,7 +29,7 @@ func (o *openCheckIn) Handle(message *user.Message) {
 			message.Say(err.Error())
 			return
 		}
-		message.Say("开启签到成功")
+		message.Say("开启打卡成功")
 		return
 	}
 	from := message.From()
@@ -38,15 +38,15 @@ func (o *openCheckIn) Handle(message *user.Message) {
 		return
 	}
 	if roomModel.Status != models.CloseCheckinStatus {
-		room.Say("签到已开启,请不要重复开启", from)
+		room.Say("打卡已开启,请不要重复开启", from)
 		return
 	}
 	err = models.UpdateRoomStatus(models.OpenCheckinStatus)
 	if err != nil {
-		room.Say("开启签到失败: "+err.Error(), from)
+		room.Say("开启打卡失败: "+err.Error(), from)
 		return
 	}
-	room.Say("签到已开启", from)
+	room.Say("打卡已开启", from)
 }
 
 func (o *openCheckIn) create(message *user.Message) error {

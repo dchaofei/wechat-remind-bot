@@ -5,7 +5,7 @@ import (
 	"github.com/wechaty/go-wechaty/wechaty/user"
 )
 
-const CloseCheckInCmdName = "#关闭签到"
+const CloseCheckInCmdName = "#关闭打卡"
 
 func init() {
 	registerHandle(CloseCheckInCmdName, new(closeCheckIn))
@@ -33,13 +33,13 @@ func (o *closeCheckIn) Handle(message *user.Message) {
 		return
 	}
 	if roomModel.Status != models.OpenCheckinStatus {
-		room.Say("签到已关闭,请不要重复关闭", from)
+		room.Say("打卡已关闭,请不要重复关闭", from)
 		return
 	}
 	err = models.UpdateRoomStatus(models.CloseCheckinStatus)
 	if err != nil {
-		room.Say("关闭签到失败: "+err.Error(), from)
+		room.Say("关闭打卡失败: "+err.Error(), from)
 		return
 	}
-	room.Say("签到已关闭", from)
+	room.Say("打卡已关闭", from)
 }
