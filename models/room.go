@@ -40,6 +40,6 @@ func AddRoom(room *Room) error {
 	return db.Create(room).Error
 }
 
-func UpdateRoomStatus(status RoomStatus) error {
-	return db.Model(&Room{}).Update("status", status).Error
+func UpdateRoomStatus(roomID int64, status RoomStatus) error {
+	return db.Model(&Room{}).Where("id = ?", roomID).Update("status", status).Error
 }

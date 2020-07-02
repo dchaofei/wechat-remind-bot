@@ -41,7 +41,7 @@ func (o *openCheckIn) Handle(message *user.Message) {
 		room.Say("打卡已开启,请不要重复开启", from)
 		return
 	}
-	err = models.UpdateRoomStatus(models.OpenCheckinStatus)
+	err = models.UpdateRoomStatus(roomModel.ID, models.OpenCheckinStatus)
 	if err != nil {
 		room.Say("开启打卡失败: "+err.Error(), from)
 		return
