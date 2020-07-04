@@ -7,6 +7,7 @@ import (
 	"github.com/wechaty/go-wechaty/wechaty-puppet/schemas"
 	_interface "github.com/wechaty/go-wechaty/wechaty/interface"
 	"log"
+	"math"
 	"time"
 )
 
@@ -62,8 +63,23 @@ func remind(roomModel *models.Room) {
 		}
 		remindContacts = append(remindContacts, contact)
 	}
-	if len(remindContacts) > 0 {
-		room.Say("\n\n不要忘记打卡哦!!!\n\n\n如果今天不想收到提醒请回复:#打卡\n了解更多命令回复:#帮助", remindContacts...)
+
+	length := len(remindContacts)
+
+	if length == 0 {
+		return
+	}
+
+	// 分批@,每次只@100人
+	start := 0
+	max := 100
+	for {
+		if start >= length {
+			return
+		}
+		min := math.Min(float64(start+max), float64(length))
+		room.Say("\n\n不要忘记打卡哦!!!\n\n\n如果今天不想收到提醒请回复:#打卡\n了解更多命令回复:#帮助", remindContacts[start:int(min)]...)
+		start+=max
 	}
 }
 
