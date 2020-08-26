@@ -37,6 +37,12 @@ func remind(roomModel *models.Room) {
 		log.Println("remind 没有找到 room: ", roomModel.WxRoomID)
 		return
 	}
+
+	// 防止新成员没有进来
+	if err := room.Sync(); err != nil {
+		log.Println("room.Sync err: ", err.Error())
+	}
+
 	notRemindWxIds, err := models.GetNotRemindWxIDsBy(roomModel.ID)
 	if err != nil {
 		log.Println("remind GetNotRemindWxIDsBy err: ", err.Error())
@@ -62,6 +68,11 @@ func remind(roomModel *models.Room) {
 			continue
 		}
 		remindContacts = append(remindContacts, contact)
+		// 防止联系人昵称变更，导致 @ 失败
+		err := contact.Sync()
+		if err != nil {
+			log.Println("contact.Sync err: ", err.Error())
+		}
 	}
 
 	length := len(remindContacts)
