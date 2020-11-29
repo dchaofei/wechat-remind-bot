@@ -17,7 +17,7 @@ func EatRemind() {
 			}()
             fmt.Println("执行中")
 			room := vars.Bot.Room().Load(roomId)
-			_, err := room.Say("兄弟姐们儿，点外卖的抓紧时间啦! #小程序:外卖券领取plus\n\n,仅在午饭晚饭的时候会有此提醒")
+			_, err := room.Say("兄弟姐们儿，点外卖的抓紧时间啦! #小程序:外卖券领取plus\n\n仅在午饭晚饭的时候会有此提醒")
 			if err != nil {
 				log.Printf("发送消息失败: {%s} err: %s", roomId, err)
 				return
