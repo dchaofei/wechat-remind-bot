@@ -2,7 +2,7 @@ package bcmd
 
 import "github.com/wechaty/go-wechaty/wechaty/user"
 
-const HelpCmdName = "#帮助"
+const HelpCmdName = "$帮助"
 
 func init() {
 	registerHandle(HelpCmdName, new(help))

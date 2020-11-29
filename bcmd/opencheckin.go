@@ -5,7 +5,7 @@ import (
 	"github.com/wechaty/go-wechaty/wechaty/user"
 )
 
-const OpenCheckInCmdName = "#开启打卡"
+const OpenCheckInCmdName = "$开启打卡"
 
 func init() {
 	registerHandle(OpenCheckInCmdName, new(openCheckIn))

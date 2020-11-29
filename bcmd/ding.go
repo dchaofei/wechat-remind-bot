@@ -5,7 +5,7 @@ import (
 	"log"
 )
 
-const DingCmdName = "#ding"
+const DingCmdName = "$ding"
 
 func init() {
 	registerHandle(DingCmdName, new(ding))

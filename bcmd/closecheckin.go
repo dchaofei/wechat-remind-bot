@@ -5,7 +5,7 @@ import (
 	"github.com/wechaty/go-wechaty/wechaty/user"
 )
 
-const CloseCheckInCmdName = "#关闭打卡"
+const CloseCheckInCmdName = "$关闭打卡"
 
 func init() {
 	registerHandle(CloseCheckInCmdName, new(closeCheckIn))

@@ -5,7 +5,7 @@ import (
 	"github.com/wechaty/go-wechaty/wechaty/user"
 )
 
-const RemindMeCmdName = "#提醒我"
+const RemindMeCmdName = "$提醒我"
 
 func init() {
 	registerHandle(RemindMeCmdName, new(remindMe))

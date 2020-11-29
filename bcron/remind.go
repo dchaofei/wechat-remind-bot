@@ -89,7 +89,7 @@ func remind(roomModel *models.Room) {
 			return
 		}
 		min := math.Min(float64(start+max), float64(length))
-		room.Say("\n\n不要忘记打卡哦!!!\n\n\n如果今天不想收到提醒请回复:#打卡\n了解更多命令回复:#帮助", remindContacts[start:int(min)]...)
+		room.Say("\n\n不要忘记打卡哦!!!\n\n\n如果今天不想收到提醒请回复:＄打卡\n了解更多命令回复:＄帮助\n点外卖回复:＄红包", remindContacts[start:int(min)]...)
 		start+=max
 	}
 }

@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-const CheckInCmdName = "#打卡"
+const CheckInCmdName = "$打卡"
 
 func init() {
 	registerHandle(CheckInCmdName, new(checkIn))

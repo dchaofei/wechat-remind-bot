@@ -6,7 +6,9 @@ import (
 )
 
 type App struct {
-	CronSpec string
+	CronSpec         string
+	EatRemindRoomIds []string
+	EatRemindCronSpec    string
 }
 
 type Database struct {

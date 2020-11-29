@@ -5,7 +5,7 @@ import (
 	"github.com/wechaty/go-wechaty/wechaty/user"
 )
 
-const MyInfoCmdName = "#我的信息"
+const MyInfoCmdName = "$我的信息"
 
 func init() {
 	registerHandle(MyInfoCmdName, new(myInfo))
